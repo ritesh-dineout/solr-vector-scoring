@@ -12,12 +12,18 @@ import org.apache.lucene.search.DocIdSetIterator;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.BytesRef;
 import org.apache.solr.common.SolrException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VectorScoreQuery extends CustomScoreQuery {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     List<Double> vector;
     String field;
     boolean cosine = true;
@@ -49,6 +55,7 @@ public class VectorScoreQuery extends CustomScoreQuery {
                 Terms terms = reader.getTermVector(docID, field);
                 // added extra check, if term vectors are null return 0 score
                 if (terms == null) {
+                    LOG.warn("terms are null for document id {}, field {}", docID, field);
                     return 0f;
                 }
                 if (vector.size() != terms.size()) {
