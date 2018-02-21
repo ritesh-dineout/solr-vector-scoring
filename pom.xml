@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.saaay71</groupId>
+    <artifactId>solr-vector-scoring</artifactId>
+    <version>1.0.0</version>
+
+    <name>Dineout isis Search Service</name>
+
+    <properties>
+        <lucene-core.version>6.6.1</lucene-core.version>
+        <solr-core.version>6.6.1</solr-core.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene-core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-core</artifactId>
+            <version>${solr-core.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Package as jar -->
+    <build>
+
+    </build>
+</project>
