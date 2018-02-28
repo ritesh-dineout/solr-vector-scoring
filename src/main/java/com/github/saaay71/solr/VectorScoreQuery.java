@@ -53,9 +53,12 @@ public class VectorScoreQuery extends CustomScoreQuery {
                 double docVectorNorm = 0;
                 LeafReader reader = context.reader();
                 Terms terms = reader.getTermVector(docID, field);
+
                 // added extra check, if term vectors are null return 0 score
                 if (terms == null) {
-                    LOG.warn("terms are null for document id {}, field {}", docID, field);
+                    org.apache.lucene.document.Document document = reader.document(docID);
+                    String rId = document.get("r_id");
+                    LOG.warn("terms are null for document id {}, restaurant id {}, field {}", docID, rId, field);
                     return 0f;
                 }
                 if (vector.size() != terms.size()) {

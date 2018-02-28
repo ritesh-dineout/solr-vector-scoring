@@ -12,6 +12,7 @@
     <properties>
         <lucene-core.version>6.6.1</lucene-core.version>
         <solr-core.version>6.6.1</solr-core.version>
+        <java.version>8</java.version>
     </properties>
 
     <dependencies>
@@ -33,12 +34,22 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
+            <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <!-- Package as jar -->
     <build>
-
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
