@@ -58,11 +58,12 @@ public class VectorScoreQuery extends CustomScoreQuery {
                 if (terms == null) {
                     org.apache.lucene.document.Document document = reader.document(docID);
                     String rId = document.get("r_id");
-                    LOG.warn("terms are null for document id {}, restaurant id {}, field {}", docID, rId, field);
+                    LOG.info("terms are null for document id {}, restaurant id {}, field {}", docID, rId, field);
                     return 0f;
                 }
                 if (vector.size() != terms.size()) {
-                    throw new SolrException(SolrException.ErrorCode.BAD_REQUEST, "indexed and input vector array must have same length");
+                    LOG.info("indexed and input vector array must have same length");
+                    return 0f;
                 }
                 TermsEnum iter = terms.iterator();
                 BytesRef text;
